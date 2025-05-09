@@ -11,6 +11,7 @@ public class CurrencyRateMapper implements Mapper<CurrencyRate, CurrencyRateDTO>
 
     @Override
     public CurrencyRateDTO fromEntityToDTO(CurrencyRate from) {
+        if (from == null) return null;
         CurrencyRateDTO to = new CurrencyRateDTO();
         to.setId(from.getId());
         to.setExchangeRate(from.getExchangeRate());
@@ -21,6 +22,7 @@ public class CurrencyRateMapper implements Mapper<CurrencyRate, CurrencyRateDTO>
 
     @Override
     public CurrencyRate fromDTOtoEntity(CurrencyRateDTO from) {
+        if (from == null) return null;
         CurrencyRate to = new CurrencyRate();
         to.setId(from.getId());
         to.setExchangeRate(from.getExchangeRate());

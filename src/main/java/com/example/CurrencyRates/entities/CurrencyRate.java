@@ -19,7 +19,7 @@ public class CurrencyRate {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "currency_rate_generator")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, scale = 8, precision = 20)
     private BigDecimal exchangeRate;
     @Column(nullable = false)
     private Date date;

@@ -12,4 +12,5 @@ public class CurrencyDTO {
     private Long id;
     private String name;
     private String code;
+    private Long currencyRateId;
 }

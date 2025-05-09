@@ -23,6 +23,6 @@ public class Currency {
     @Column(nullable = false, unique = true)
     private String code;
 
-    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "currency")
-    private List<CurrencyRate> currencyRates;
+    @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "currency")
+    private CurrencyRate currencyRate;
 }

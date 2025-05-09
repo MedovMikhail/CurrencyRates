@@ -24,6 +24,6 @@ public class CurrencyRate {
     @Column(nullable = false)
     private Date date;
 
-    @ManyToOne(targetEntity = Currency.class, fetch = FetchType.LAZY)
+    @OneToOne(targetEntity = Currency.class, fetch = FetchType.LAZY)
     private Currency currency;
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Date;
 import java.util.List;
 
@@ -56,7 +57,9 @@ public class CurrencyRateService {
         CurrencyDTO currencyDTO = currencyService.getCurrency(code.toUpperCase());
 
         if (currencyDTO == null) return null;
-
+        currencyRateDTO.setExchangeRate(
+                currencyRateDTO.getExchangeRate().setScale(8, RoundingMode.HALF_UP)
+        );
         currencyRateDTO.setCurrencyId(currencyDTO.getId());
         currencyRateDTO.setDate(new Date());
         CurrencyRate currencyRate = currencyRateMapper.fromDTOtoEntity(currencyRateDTO);
@@ -73,7 +76,9 @@ public class CurrencyRateService {
     public CurrencyRateDTO updateCurrencyRate(Long id, BigDecimal exchangeRate) {
         CurrencyRate currencyRate = currencyRateRepository.findById(id).orElse(null);
         if (currencyRate == null) return null;
-        currencyRate.setExchangeRate(exchangeRate);
+        currencyRate.setExchangeRate(
+                exchangeRate.setScale(8, RoundingMode.HALF_UP)
+        );
         currencyRate.setDate(new Date());
         try {
             currencyRate = currencyRateRepository.save(currencyRate);

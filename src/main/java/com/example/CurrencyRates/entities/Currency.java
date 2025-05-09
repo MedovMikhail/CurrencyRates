@@ -16,7 +16,7 @@ public class Currency {
     @Id
     @SequenceGenerator(name = "currency_generator", sequenceName = "currency_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "currency_generator")
-    private long id;
+    private Long id;
 
     @Column(nullable = false)
     private String name;

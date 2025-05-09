@@ -17,7 +17,7 @@ public class CurrencyRate {
     @Id
     @SequenceGenerator(name = "currency_rate_generator", sequenceName = "currency_rate_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "currency_rate_generator")
-    private long id;
+    private Long id;
 
     @Column(nullable = false)
     private BigDecimal exchangeRate;

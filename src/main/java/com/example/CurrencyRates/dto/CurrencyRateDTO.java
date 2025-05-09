@@ -12,7 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class CurrencyRateDTO {
 
-    private long id;
+    private Long id;
     private BigDecimal exchangeRate;
     private Date date;
     private long currencyId;

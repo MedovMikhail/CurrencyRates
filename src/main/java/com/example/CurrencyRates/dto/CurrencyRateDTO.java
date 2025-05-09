@@ -14,6 +14,6 @@ public class CurrencyRateDTO {
 
     private long id;
     private BigDecimal exchangeRate;
-    private Date data;
+    private Date date;
     private long currencyId;
 }

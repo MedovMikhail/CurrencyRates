@@ -1,7 +1,8 @@
 package com.example.CurrencyRates.services;
 
-import com.example.CurrencyRates.dto.CurrencyDTO;
-import com.example.CurrencyRates.dto.CurrencyRateDTO;
+import com.example.CurrencyRates.dto.entities.CurrencyDTO;
+import com.example.CurrencyRates.dto.entities.CurrencyRateDTO;
+import com.example.CurrencyRates.dto.kafka.CurrencyCodesMessageDTO;
 import com.example.CurrencyRates.entities.CurrencyRate;
 import com.example.CurrencyRates.repositories.CurrencyRateRepository;
 import com.example.CurrencyRates.utils.mappers.CurrencyRateMapper;
@@ -40,6 +41,15 @@ public class CurrencyRateService {
         return currencyRateMapper.fromEntityToDTO(
                 currencyRateRepository.findByCurrencyCode(code).orElse(null)
         );
+    }
+
+    public BigDecimal getCurrenciesScale(CurrencyCodesMessageDTO codesMessage) {
+        BigDecimal scale = currencyRateRepository.getCurrencyRateScale(
+                codesMessage.getBaseCurrencyCode().toUpperCase(),
+                codesMessage.getTargetCurrencyCode().toUpperCase()
+        );
+        if (scale != null) scale = scale.setScale(8, RoundingMode.HALF_UP);
+        return scale;
     }
 
     public CurrencyRateDTO addCurrencyRate(Long currencyId, CurrencyRateDTO currencyRateDTO) {

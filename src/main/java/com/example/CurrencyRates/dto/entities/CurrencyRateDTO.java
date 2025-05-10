@@ -1,4 +1,4 @@
-package com.example.CurrencyRates.dto;
+package com.example.CurrencyRates.dto.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,6 +1,6 @@
 package com.example.CurrencyRates.utils.mappers;
 
-import com.example.CurrencyRates.dto.CurrencyRateDTO;
+import com.example.CurrencyRates.dto.entities.CurrencyRateDTO;
 import com.example.CurrencyRates.entities.Currency;
 import com.example.CurrencyRates.entities.CurrencyRate;
 import com.example.CurrencyRates.utils.mappers.interfaces.Mapper;

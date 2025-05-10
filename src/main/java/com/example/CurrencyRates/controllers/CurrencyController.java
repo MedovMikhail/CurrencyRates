@@ -1,6 +1,6 @@
 package com.example.CurrencyRates.controllers;
 
-import com.example.CurrencyRates.dto.CurrencyDTO;
+import com.example.CurrencyRates.dto.entities.CurrencyDTO;
 import com.example.CurrencyRates.services.CurrencyService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;

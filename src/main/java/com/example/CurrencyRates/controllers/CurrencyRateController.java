@@ -1,6 +1,6 @@
 package com.example.CurrencyRates.controllers;
 
-import com.example.CurrencyRates.dto.CurrencyRateDTO;
+import com.example.CurrencyRates.dto.entities.CurrencyRateDTO;
 import com.example.CurrencyRates.services.CurrencyRateService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +20,7 @@ public class CurrencyRateController {
     @Operation(summary = "Запросить список всех курсов валют",
             description = "В ответе возвращается список CurrencyRate.")
     @GetMapping
-    public List<CurrencyRateDTO> getCurrencyRates() {
-        return currencyRateService.getCurrencyRates();
-    }
+    public List<CurrencyRateDTO> getCurrencyRates() {return currencyRateService.getCurrencyRates();}
 
     @Operation(summary = "Запросить курс валюты по id",
             description = "В ответе возвращается CurrencyRate.")

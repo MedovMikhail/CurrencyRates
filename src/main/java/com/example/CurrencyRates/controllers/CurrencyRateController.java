@@ -27,8 +27,16 @@ public class CurrencyRateController {
     @Operation(summary = "Запросить курс валюты по id",
             description = "В ответе возвращается CurrencyRate.")
     @GetMapping("/{id}")
-    public ResponseEntity<CurrencyRateDTO> getCurrencyRateById(@PathVariable  Long id) {
+    public ResponseEntity<CurrencyRateDTO> getCurrencyRateById(@PathVariable Long id) {
         CurrencyRateDTO currencyRateDTO = currencyRateService.getCurrencyRate(id);
+        return currencyRateDTO == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(currencyRateDTO);
+    }
+
+    @Operation(summary = "Запросить курс валюты по коду",
+            description = "В ответе возвращается CurrencyRate.")
+    @GetMapping("/code")
+    public ResponseEntity<CurrencyRateDTO> getCurrencyRateByCode(@RequestParam String code) {
+        CurrencyRateDTO currencyRateDTO = currencyRateService.getCurrencyRate(code);
         return currencyRateDTO == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(currencyRateDTO);
     }
 

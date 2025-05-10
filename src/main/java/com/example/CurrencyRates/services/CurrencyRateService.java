@@ -36,6 +36,12 @@ public class CurrencyRateService {
         );
     }
 
+    public CurrencyRateDTO getCurrencyRate(String code) {
+        return currencyRateMapper.fromEntityToDTO(
+                currencyRateRepository.findByCurrencyCode(code).orElse(null)
+        );
+    }
+
     public CurrencyRateDTO addCurrencyRate(Long currencyId, CurrencyRateDTO currencyRateDTO) {
         if (currencyRateRepository.findByCurrencyId(currencyId).isPresent()) return null;
         currencyRateDTO.setCurrencyId(currencyId);
@@ -76,6 +82,7 @@ public class CurrencyRateService {
     public CurrencyRateDTO updateCurrencyRate(Long id, BigDecimal exchangeRate) {
         CurrencyRate currencyRate = currencyRateRepository.findById(id).orElse(null);
         if (currencyRate == null) return null;
+
         currencyRate.setExchangeRate(
                 exchangeRate.setScale(8, RoundingMode.HALF_UP)
         );

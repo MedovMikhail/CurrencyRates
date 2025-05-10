@@ -1,10 +1,9 @@
 package com.example.CurrencyRates.kafka.consumer;
 
-import com.example.CurrencyRates.dto.kafka.CurrencyCodesMessage;
+import com.example.CurrencyRates.dto.kafka.CurrencyCodesMessageDTO;
 import com.example.CurrencyRates.kafka.producer.KafkaSender;
 import com.example.CurrencyRates.services.CurrencyRateService;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -28,7 +27,7 @@ public class KafkaMessageListener {
         log.info("Received message [{}] in group1", record.value());
 
         try {
-            CurrencyCodesMessage codesMessage = objectMapper.readValue(record.value(), CurrencyCodesMessage.class);
+            CurrencyCodesMessageDTO codesMessage = objectMapper.readValue(record.value(), CurrencyCodesMessageDTO.class);
             kafkaSender.sendMessage(
                     currencyRateService.getCurrenciesScale(codesMessage).toString(),
                     "get-currency-rate",

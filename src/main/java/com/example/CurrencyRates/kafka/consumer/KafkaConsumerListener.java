@@ -1,7 +1,7 @@
 package com.example.CurrencyRates.kafka.consumer;
 
 import com.example.CurrencyRates.dto.kafka.CurrencyCodesMessageDTO;
-import com.example.CurrencyRates.kafka.producer.KafkaSender;
+import com.example.CurrencyRates.kafka.producer.KafkaProducerSender;
 import com.example.CurrencyRates.services.CurrencyRateService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,12 +13,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class KafkaMessageListener {
+public class KafkaConsumerListener {
 
     @Autowired
     private CurrencyRateService currencyRateService;
     @Autowired
-    private KafkaSender kafkaSender;
+    private KafkaProducerSender kafkaSender;
     @Autowired
     private ObjectMapper objectMapper;
 

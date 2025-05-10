@@ -4,7 +4,6 @@ import com.example.CurrencyRates.dto.CurrencyDTO;
 import com.example.CurrencyRates.entities.Currency;
 import com.example.CurrencyRates.repositories.CurrencyRepository;
 import com.example.CurrencyRates.utils.mappers.CurrencyMapper;
-import jakarta.persistence.NonUniqueResultException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;

@@ -28,6 +28,7 @@ public class KafkaConsumerListener {
     @Autowired
     private ObjectMapper objectMapper;
 
+    // слушатель для получения соотношения валют
     @KafkaListener(topics = "request-currency-scale", groupId = "group1")
     void listenerRequiredCurrencyScale(ConsumerRecord<String, String> record) {
         log.info("Received message [{}] in group1", record.value());
@@ -44,6 +45,7 @@ public class KafkaConsumerListener {
         }
     }
 
+    // слушатель для получения курса валюты
     @KafkaListener(topics = "request-currency-rate", groupId = "group1")
     void listenerRequiredCurrencyRate(ConsumerRecord<String, String> record) {
         log.info("Received message [{}] in group1", record.value());
@@ -58,6 +60,7 @@ public class KafkaConsumerListener {
         );
     }
 
+    // слушатель для получения курса валют
     @KafkaListener(topics = "currency-rates", groupId = "group1")
     void listenerCurrencyRates(ConsumerRecord<String, String> record) {
         log.info("Received message [{}] in group1", record.value());

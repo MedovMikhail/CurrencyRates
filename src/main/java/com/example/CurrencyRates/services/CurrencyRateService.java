@@ -45,6 +45,7 @@ public class CurrencyRateService {
         );
     }
 
+    // получения соотношения валют
     public BigDecimal getCurrenciesScale(CurrencyCodesMessageDTO codesMessage) {
         BigDecimal scale = currencyRateRepository.getCurrencyRateScale(
                 codesMessage.getBaseCurrencyCode().toUpperCase(),
@@ -54,6 +55,7 @@ public class CurrencyRateService {
         return scale;
     }
 
+    // получение курса валют для определенных валют
     public HashMap<String, BigDecimal> getCurrencyRatesByCurrencyCodes(List<String> currencyCodes) {
         List<CurrencyAndRate> currencyRates = currencyRateRepository.findByCurrencyCodeIn(currencyCodes);
         HashMap<String, BigDecimal> currencyRatesMap = new HashMap<>();
@@ -64,6 +66,7 @@ public class CurrencyRateService {
         return currencyRatesMap;
     }
 
+    // добавление курса валюты по id валюты
     public CurrencyRateDTO addCurrencyRate(Long currencyId, CurrencyRateDTO currencyRateDTO) {
         if (currencyRateRepository.findByCurrencyId(currencyId).isPresent()) return null;
         currencyRateDTO.setCurrencyId(currencyId);
@@ -79,6 +82,7 @@ public class CurrencyRateService {
         return currencyRateDTO;
     }
 
+    // добавление курса валюты по коду валюты
     public CurrencyRateDTO addCurrencyRate(String code, CurrencyRateDTO currencyRateDTO) {
         if (currencyRateRepository.findByCurrencyCode(code).isPresent()) return null;
 

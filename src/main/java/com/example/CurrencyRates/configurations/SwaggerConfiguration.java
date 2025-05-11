@@ -13,7 +13,7 @@ import java.util.List;
 
 @Configuration
 @AllArgsConstructor
-public class OpenApiConfiguration {
+public class SwaggerConfiguration {
 
     private Environment environment;
 

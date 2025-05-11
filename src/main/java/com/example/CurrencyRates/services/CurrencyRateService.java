@@ -1,5 +1,6 @@
 package com.example.CurrencyRates.services;
 
+import com.example.CurrencyRates.dto.CurrencyAndRate;
 import com.example.CurrencyRates.dto.entities.CurrencyDTO;
 import com.example.CurrencyRates.dto.entities.CurrencyRateDTO;
 import com.example.CurrencyRates.dto.kafka.CurrencyCodesMessageDTO;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -50,6 +52,16 @@ public class CurrencyRateService {
         );
         if (scale != null) scale = scale.setScale(8, RoundingMode.HALF_UP);
         return scale;
+    }
+
+    public HashMap<String, BigDecimal> getCurrencyRatesByCurrencyCodes(List<String> currencyCodes) {
+        List<CurrencyAndRate> currencyRates = currencyRateRepository.findByCurrencyCodeIn(currencyCodes);
+        HashMap<String, BigDecimal> currencyRatesMap = new HashMap<>();
+        currencyRates
+                .forEach(x -> {
+                    currencyRatesMap.put(x.getCode(), x.getExchangeRate());
+                });
+        return currencyRatesMap;
     }
 
     public CurrencyRateDTO addCurrencyRate(Long currencyId, CurrencyRateDTO currencyRateDTO) {
